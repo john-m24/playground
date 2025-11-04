@@ -13,6 +13,8 @@ export interface AppCatalogEntry {
   repoUrl: string
   defaultRunCommand?: string
   defaultPort?: number
+  setupInstructions?: string
+  requirements?: string[]
 }
 
 export interface GithubPlaygroundMeta extends BasePlaygroundMeta {
@@ -33,7 +35,7 @@ export interface DockerPlaygroundMeta extends BasePlaygroundMeta {
 
 export type PlaygroundMeta = GithubPlaygroundMeta | DockerPlaygroundMeta
 
-export interface PlaygroundWithStatus extends PlaygroundMeta {
+export type PlaygroundWithStatus = PlaygroundMeta & {
   status?: 'Running' | 'Stopped' | 'Unknown'
 }
 

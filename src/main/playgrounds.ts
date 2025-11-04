@@ -104,7 +104,7 @@ export async function createGithubPlayground(params: {
 }
 
 export async function installAppFromStore(appId: string): Promise<GithubPlaygroundMeta> {
-  const app = getAppById(appId)
+  const app = await getAppById(appId)
   if (!app) {
     throw new Error(`App with id "${appId}" not found in catalog`)
   }
