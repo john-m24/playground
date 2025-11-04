@@ -1,12 +1,15 @@
 {
   "id": "onyx",
   "name": "Onyx",
-  "description": "Open Source AI Platform - AI Chat with advanced features that works with every LLM",
+  "description": "Onyx is a feature-rich, self-hostable chat platform that works with any LLM and can run in air-gapped environments. It provides advanced features like agents, web search, retrieval-augmented generation (RAG), deep research and connectors to dozens of knowledge sources.",
   "repoUrl": "https://github.com/onyx-dot-app/onyx",
   "defaultRunCommand": "if [ -f docker-compose.yml ]; then docker compose up; elif [ -f docker-compose.yaml ]; then docker compose up; elif [ -f deployment/docker_compose/docker-compose.yaml ]; then cd deployment/docker_compose && docker compose up; elif [ -f deployment/docker_compose/docker-compose.yml ]; then cd deployment/docker_compose && docker compose up; else echo \"Docker Compose file not found. Please check the Onyx documentation.\"; fi",
   "defaultPort": 8080,
-  "setupInstructions": "Onyx uses Docker Compose for deployment.\n\n1. Ensure Docker and Docker Compose are installed\n2. Clone the repository (already done when downloading)\n3. Check for docker-compose.yml in the root or deployment/docker_compose/\n4. Run 'docker compose up' to start the services\n\nNote: Onyx may require additional configuration files or environment variables. Refer to the Onyx documentation for complete setup instructions.",
-  "requirements": ["docker", "docker-compose"],
+  "setupInstructions": "1. Install Git and Docker with Docker Compose\n2. Clone the repository: git clone https://github.com/onyx-dot-app/onyx.git\n3. Navigate to the compose files: cd onyx/deployment/docker_compose\n4. Start Onyx with: docker compose up -d (add --build --force-recreate to build from source)\n5. Wait for initialization, then open http://localhost:3000 in your browser to access Onyx",
+  "requirements": [
+    "git",
+    "docker",
+    "docker-compose"
+  ],
   "deleteCommand": "if [ -f docker-compose.yml ]; then docker compose down --rmi all -v; elif [ -f docker-compose.yaml ]; then docker compose down --rmi all -v; elif [ -f deployment/docker_compose/docker-compose.yaml ]; then cd deployment/docker_compose && docker compose down --rmi all -v; elif [ -f deployment/docker_compose/docker-compose.yml ]; then cd deployment/docker_compose && docker compose down --rmi all -v; fi"
 }
-
