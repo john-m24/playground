@@ -133,6 +133,17 @@ export async function deleteGithubPlayground(id: string): Promise<void> {
   const item = list[idx] as GithubPlaygroundMeta
   // stop any running dev process for this id
   await stopDevCommand(id).catch(() => void 0)
+  // execute delete command from app catalog if available
+  if (item.appStoreId && item.path && fs.existsSync(item.path)) {
+    try {
+      const app = await getAppById(item.appStoreId)
+      if (app?.deleteCommand) {
+        await run(app.deleteCommand, { cwd: item.path })
+      }
+    } catch {
+      // Ignore errors - delete command might fail if docker isn't available or containers are already cleaned up
+    }
+  }
   // delete directory
   if (item.path && fs.existsSync(item.path)) {
     await fsp.rm(item.path, { recursive: true, force: true })

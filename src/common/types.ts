@@ -15,6 +15,7 @@ export interface AppCatalogEntry {
   defaultPort?: number
   setupInstructions?: string
   requirements?: string[]
+  deleteCommand?: string
 }
 
 export interface GithubPlaygroundMeta extends BasePlaygroundMeta {
