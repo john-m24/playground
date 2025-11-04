@@ -1,6 +1,6 @@
-# Contributing to Playgrounds Desktop
+# Contributing to Playground
 
-Thank you for your interest in contributing to Playgrounds Desktop! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to Playground! This document provides guidelines and instructions for contributing.
 
 ## Development Setup
 
@@ -15,8 +15,8 @@ Thank you for your interest in contributing to Playgrounds Desktop! This documen
 
 1. Fork the repository and clone your fork:
    ```bash
-   git clone https://github.com/your-username/playgrounds-desktop.git
-   cd playgrounds-desktop
+   git clone https://github.com/john-m24/playground.git
+   cd playground
    ```
 
 2. Install dependencies:

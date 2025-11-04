@@ -1,14 +1,14 @@
-Playgrounds Desktop
-===================
+Playground
+==========
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/your-username/playgrounds-desktop)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/john-m24/playground)
 
 An Electron + TypeScript desktop app to spin up and throw away "playgrounds" for GitHub repos and Docker images — without manually running git clone, rm -rf, docker pull, docker run, etc.
 
 ## Repository
 
-[GitHub Repository](https://github.com/your-username/playgrounds-desktop) - Replace `your-username` with your actual GitHub username when publishing.
+[GitHub Repository](https://github.com/john-m24/playground) - Replace `john-m24` with your actual GitHub username when publishing.
 
 Features
 --------

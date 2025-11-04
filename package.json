@@ -1,5 +1,5 @@
 {
-  "name": "playgrounds-desktop",
+  "name": "playground",
   "version": "0.1.0",
   "description": "Electron app to quickly spin up GitHub and Docker playgrounds",
   "main": "dist/main/index.cjs",
@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/playgrounds-desktop.git"
+    "url": "https://github.com/john-m24/playground.git"
   },
   "keywords": [
     "electron",
