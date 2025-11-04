@@ -140,11 +140,9 @@ export default function App() {
                       <div className="small muted">{item.repoUrl}</div>
                       <div className="small muted">{item.path}</div>
                     </div>
-                    <div style={{ display: 'flex', gap: 8 }}>
+                    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
                       <button className="btn" onClick={() => window.api.openEditor(item.id)}>Open in editor</button>
                       <button className="btn" onClick={() => window.api.openTerminal(item.id)}>Open terminal</button>
-                    </div>
-                    <div style={{ display: 'flex', gap: 8 }}>
                       <button
                         className="btn"
                         disabled={running[item.id]}
