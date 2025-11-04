@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import type { PlaygroundWithStatus, GithubPlaygroundMeta, DockerPlaygroundMeta } from '../common/types'
+import type { PlaygroundWithStatus, GithubPlaygroundMeta, DockerPlaygroundMeta, AppCatalogEntry } from '../common/types'
 
 const api = {
   listPlaygrounds: (): Promise<PlaygroundWithStatus[]> => ipcRenderer.invoke('playgrounds:list'),
@@ -26,6 +26,8 @@ const api = {
     ipcRenderer.on('dev:exit', handler)
     return () => ipcRenderer.removeListener('dev:exit', handler)
   },
+  getAppCatalog: (): Promise<AppCatalogEntry[]> => ipcRenderer.invoke('appStore:getCatalog'),
+  installApp: (appId: string): Promise<GithubPlaygroundMeta> => ipcRenderer.invoke('appStore:install', appId),
 }
 
 declare global {

@@ -6,6 +6,7 @@ import { spawn, type ChildProcess } from 'node:child_process'
 import { EventEmitter } from 'node:events'
 import { run, which } from './utils/shell'
 import type { PlaygroundMeta, GithubPlaygroundMeta, DockerPlaygroundMeta, PlaygroundWithStatus } from '../common/types'
+import { getAppById } from './appStore'
 
 const BASE_DIR = path.join(os.homedir(), '.playgrounds')
 const GITHUB_DIR = path.join(BASE_DIR, 'github')
@@ -62,6 +63,7 @@ export async function createGithubPlayground(params: {
   repoUrl: string
   runCommand?: string
   port?: number
+  appStoreId?: string
 }): Promise<GithubPlaygroundMeta> {
   const gitPath = await which('git')
   if (!gitPath) throw new Error('git not found in PATH')
@@ -92,12 +94,36 @@ export async function createGithubPlayground(params: {
     createdAt: nowIso(),
     runCommand: params.runCommand,
     port: params.port,
+    appStoreId: params.appStoreId,
   }
 
   const list = await readMeta()
   list.unshift(meta)
   await writeMeta(list)
   return meta
+}
+
+export async function installAppFromStore(appId: string): Promise<GithubPlaygroundMeta> {
+  const app = getAppById(appId)
+  if (!app) {
+    throw new Error(`App with id "${appId}" not found in catalog`)
+  }
+
+  // Check if already installed
+  const list = await readMeta()
+  const alreadyInstalled = list.some(
+    (item) => item.type === 'github' && (item as GithubPlaygroundMeta).appStoreId === appId
+  )
+  if (alreadyInstalled) {
+    throw new Error(`App "${app.name}" is already installed`)
+  }
+
+  return createGithubPlayground({
+    repoUrl: app.repoUrl,
+    runCommand: app.defaultRunCommand,
+    port: app.defaultPort,
+    appStoreId: app.id,
+  })
 }
 
 export async function deleteGithubPlayground(id: string): Promise<void> {

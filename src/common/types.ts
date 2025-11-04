@@ -6,12 +6,22 @@ export interface BasePlaygroundMeta {
   createdAt: string // ISO string
 }
 
+export interface AppCatalogEntry {
+  id: string
+  name: string
+  description: string
+  repoUrl: string
+  defaultRunCommand?: string
+  defaultPort?: number
+}
+
 export interface GithubPlaygroundMeta extends BasePlaygroundMeta {
   type: 'github'
   repoUrl: string
   path: string
   runCommand?: string
   port?: number
+  appStoreId?: string
 }
 
 export interface DockerPlaygroundMeta extends BasePlaygroundMeta {

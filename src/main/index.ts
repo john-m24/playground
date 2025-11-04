@@ -17,7 +17,9 @@ import {
   startDevCommand,
   stopDevCommand,
   getDevLog,
+  installAppFromStore,
 } from './playgrounds'
+import { getAppCatalog } from './appStore'
 
 let mainWindow: BrowserWindow | null = null
 
@@ -81,6 +83,10 @@ ipcMain.handle('docker:remove', (_e, containerId: string) => removeDockerContain
 
 // Expose location info (debug/advanced)
 ipcMain.handle('meta:paths', () => ({ BASE_DIR, META_PATH }))
+
+// App store IPC
+ipcMain.handle('appStore:getCatalog', () => getAppCatalog())
+ipcMain.handle('appStore:install', (_e, appId: string) => installAppFromStore(appId))
 
 // Forward dev event logs to renderer
 devEvents.on('log', (payload) => {

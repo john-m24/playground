@@ -17,6 +17,8 @@ declare global {
       getDevLog: (id: string) => Promise<{ running: boolean; log: string }>
       onDevLog: (cb: (payload: { id: string; chunk: string }) => void) => () => void
       onDevExit: (cb: (payload: { id: string; code: number | null; signal: NodeJS.Signals | null }) => void) => () => void
+      getAppCatalog: () => Promise<any[]>
+      installApp: (appId: string) => Promise<any>
     }
   }
 }
